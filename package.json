@@ -1,0 +1,23 @@
+{
+  "name": "boardgametracker",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Rufasa85/boardgametracker.git"
+  },
+  "author": "",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/Rufasa85/boardgametracker/issues"
+  },
+  "dependencies": {
+    "express-ejs-layouts": "~2.0.0",
+    "ejs": "~2.4.1",
+    "express": "~4.13.4"
+  }
+}
