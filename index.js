@@ -8,7 +8,7 @@ app.set('view engine', 'ejs');
 app.use('/', express.static(__dirname + '/static/'));
 
 app.get('/', function(req, res) {
-    res.send('Workin it')
+    res.render('index')
 });
 
 
