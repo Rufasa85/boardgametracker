@@ -15,7 +15,11 @@ moongoose.connect('mongodb://localhost/boardgametracker');
 
 
 app.get('/', function(req, res) {
-    res.render('index')
+        Play.find({}, function(err, plays) {
+            if (err) res.send(err);
+            // res.send(plays);
+         res.render('index', {plays:plays})
+        })
 });
 
 app.route('/play')
@@ -23,7 +27,17 @@ app.route('/play')
         res.render('new')
 }).post(function(req, res) {
     console.log(req.body);
-    res.send(req.body);
+    var playerArray = req.body.players.split(', ');
+    var newPlay = Play({
+        game:req.body.game,
+        players:playerArray,
+        winner: req.body.winner
+    });
+    newPlay.save(function(err) {
+        if (err) console.log(err);
+        console.log('User created!');
+    });
+    res.redirect('/');
 });
 
 
