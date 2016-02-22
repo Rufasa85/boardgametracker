@@ -30,9 +30,15 @@ router.route('/new')
 router.route('/:id')
     .get(function(req,res) {
         Play.findById(req.params.id, function(err, play) {
+            if (err) console.log(err);
             // res.send(play);
             res.render('plays/show', {play:play});
         });
+    }).delete(function(req,res) {
+        Play.findByIdAndRemove(req.params.id, function(err, play) {
+            if (err) console.log(err);
+            res.send('deleted');
+        })
     });
 
 module.exports = router;
