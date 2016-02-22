@@ -30,7 +30,8 @@ router.route('/new')
 router.route('/:id')
     .get(function(req,res) {
         Play.findById(req.params.id, function(err, play) {
-            res.send(play);
+            // res.send(play);
+            res.render('plays/show', {play:play});
         });
     });
 

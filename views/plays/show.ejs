@@ -1,0 +1,14 @@
+<h1 class = 'text-center'> <%= play.game %></h1>
+<h2 class = 'text-center'><strong> <%= play.winner %> Wins! </strong></h2>
+<div class="row">
+    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-md-offset-4">
+        <h4 class = 'text-center'>Players:</h4>
+        <ol>
+            <% play.players.forEach(function(player) { %>
+                <li><%= player %></li>
+            <% })  %>
+        </ol>
+    </div>
+</div>
+
+
