@@ -1,6 +1,6 @@
 <h1>Games!</h1>
 <% plays.forEach(function(play){  %>
-<div class="well">
+<a href='/plays/<%= play.id %>'><div class="well">
     <h1><%=play.game%></h1>
     <p><strong>Winner: <%=play.winner%></strong></p>
     <p> players:</p>
@@ -11,5 +11,5 @@
         </li>
         <% }) %>
     </ul>
-</div>
+</div> </a>
 <% }) %>

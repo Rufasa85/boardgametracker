@@ -27,4 +27,11 @@ router.route('/new')
     res.redirect('/plays');
 });
 
+router.route('/:id')
+    .get(function(req,res) {
+        Play.findById(req.params.id, function(err, play) {
+            res.send(play);
+        });
+    });
+
 module.exports = router;
