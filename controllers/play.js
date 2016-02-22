@@ -23,7 +23,6 @@ router.route('/new')
     });
     newPlay.save(function(err) {
         if (err) console.log(err);
-        console.log('User created!');
     });
     res.redirect('/plays');
 });
