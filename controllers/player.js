@@ -1,24 +1,30 @@
 var express = require('express');
 var router = express.Router();
-var Player = require('..model/player');
+var Player = require('../models/player');
 
 router.get('', function(req, res) {
-    res.render('players/index');
+    Player.find({}, function (err, players) {
+        if (err) res.send(err);
+        // res.send(players);
+        res.render('players/index', {players:players});
+    });
 });
 
 
 router.route('/new')
     .get(function(req,res) {
-        render('players/new');
+        res.render('players/new');
     })
     .post(function(req, res) {
-        var newPlayer = Player.new({
+        var newPlayer = Player({
             name:req.body.name,
             won:0,
             played:0
         });
-        newPlayer.save();
-        res.redirect('/plays');
+        newPlayer.save(function (err) {
+            if (err) console.log(err);
+        });
+        res.redirect('/players');
     });
 
 module.exports = router;
