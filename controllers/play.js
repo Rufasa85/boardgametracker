@@ -78,6 +78,12 @@ router.route('/:id')
         });
     }).delete(function(req,res) {
         Play.findByIdAndRemove(req.params.id, function(err, play) {
+            play.players.forEach(function(player){
+                Player.findById(player, function(err, foundPlayer) {
+                    foundPlayer.played += -1;
+                    foundPlayer.save();
+                });
+            });
             if (err) console.log(err);
             res.send('deleted');
         })
