@@ -22,18 +22,38 @@ router.route('/new')
     var playerArray = [];
     if (req.body.player1 !== 'false') {
         playerArray.push(req.body.player1);
+        Player.findById(req.body.player1, function(err, player) {
+            player.played +=1;
+            player.save();
+        });
     };
     if (req.body.player2 !== 'false') {
         playerArray.push(req.body.player2);
+        Player.findById(req.body.player2, function(err, player) {
+            player.played +=1;
+            player.save();
+        });
     };
     if (req.body.player3 !== 'false') {
         playerArray.push(req.body.player3);
+        Player.findById(req.body.player3, function(err, player) {
+            player.played +=1;
+            player.save();
+        });
     };
     if (req.body.player4 !== 'false') {
         playerArray.push(req.body.player4);
+        Player.findById(req.body.player4, function(err, player) {
+            player.played +=1;
+            player.save();
+        });
     };
     if (req.body.player5 !== 'false') {
         playerArray.push(req.body.player5);
+        Player.findById(req.body.player5, function(err, player) {
+            player.played +=1;
+            player.save();
+        });
     };
     console.log(playerArray);
     var newPlay = Play({
@@ -41,6 +61,7 @@ router.route('/new')
         players:playerArray,
         winner: req.body.winner
     });
+
     // res.send(newPlay);
     newPlay.save(function(err) {
         if (err) console.log(err);
