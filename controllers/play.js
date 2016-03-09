@@ -18,44 +18,43 @@ router.route('/new')
             res.render('plays/new', {players:players})
         });
 }).post(function(req, res) {
-    console.log(req.body);
     var playerArray = [];
     if (req.body.player1 !== 'false') {
         playerArray.push(req.body.player1);
-        Player.findById(req.body.player1, function(err, player) {
-            player.played +=1;
+        Player.findById(req.body.player1, function(err,player) {
+            player.played += 1;
             player.save();
         });
     };
     if (req.body.player2 !== 'false') {
         playerArray.push(req.body.player2);
-        Player.findById(req.body.player2, function(err, player) {
-            player.played +=1;
+            Player.findById(req.body.player2, function(err,player) {
+            player.played += 1;
             player.save();
         });
     };
     if (req.body.player3 !== 'false') {
         playerArray.push(req.body.player3);
-        Player.findById(req.body.player3, function(err, player) {
-            player.played +=1;
+            Player.findById(req.body.player3, function(err,player) {
+            player.played += 1;
             player.save();
         });
     };
     if (req.body.player4 !== 'false') {
         playerArray.push(req.body.player4);
-        Player.findById(req.body.player4, function(err, player) {
-            player.played +=1;
+            Player.findById(req.body.player4, function(err,player) {
+            player.played += 1;
             player.save();
         });
     };
     if (req.body.player5 !== 'false') {
         playerArray.push(req.body.player5);
-        Player.findById(req.body.player5, function(err, player) {
-            player.played +=1;
+            Player.findById(req.body.player5, function(err,player) {
+            player.played += 1;
             player.save();
         });
-    };
-    console.log(playerArray);
+    }
+    console.log(req.body);
     var newPlay = Play({
         game:req.body.game,
         players:playerArray,
@@ -71,9 +70,10 @@ router.route('/new')
 
 router.route('/:id')
     .get(function(req,res) {
-        Play.findById(req.params.id, function(err, play) {
+        Play.findById(req.params.id).populate('players').exec(function(err, play) {
+
+            // res.send(play.players[0].id);
             if (err) console.log(err);
-            // res.send(play);
             res.render('plays/show', {play:play});
         });
     }).delete(function(req,res) {
